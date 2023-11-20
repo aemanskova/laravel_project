@@ -34,6 +34,15 @@ return [
     */
 
     'mailers' => [
+
+        // 'app' => [
+        //     'transport' => 'failover',
+        //     'mailers' => [
+        //         'mailgun',
+        //         'postmark',
+        //     ],
+        // ],
+
         'smtp' => [
             'transport' => 'smtp',
             'url' => env('MAIL_URL'),
@@ -52,13 +61,23 @@ return [
 
         'mailgun' => [
             'transport' => 'mailgun',
-            // 'client' => [
-            //     'timeout' => 5,
-            // ],
+            'domain' => env('MAILGUN_DOMAIN'),
+            'secret' => env('MAILGUN_SECRET'),
+            // 'endpoint' => env('MAILGUN_ENDPOINT')
         ],
+
+        'from' => [
+            'address' => env('MAIL_FROM_ADDRESS', 'manskovushka015@gmail.com'),
+            'name' => env('MAIL_FROM_NAME', 'Alena'),
+        ],
+
+        'reply_to' => ['address' => 'manskovushka015@gmail.com', 'name' => 'App Name'],
 
         'postmark' => [
             'transport' => 'postmark',
+            'message_stream_id' => env('POSTMARK_MESSAGE_STREAM_ID'),
+            'token' => env('POSTMARK_TOKEN'),
+    
             // 'client' => [
             //     'timeout' => 5,
             // ],
