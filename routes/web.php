@@ -19,10 +19,11 @@ use App\Http\Controllers\CommentController;
 
 //Article
 Route::resource('/article', ArticleController::class);
+Route::get('/article/{article}', [ArticleController::class, 'show'])->name('article.show')->middleware('path');
 
 //Comment
-Route::group(['prefix' => '/comment'], function(){
-    Route::post('/store', [CommentController::class, 'store'])->middleware('auth:sanctum');
+Route::group(['prefix' => '/comment', 'middleware' => 'auth:sanctum'], function () {
+    Route::post('/store', [CommentController::class, 'store']);
     Route::get('/edit/{id}', [CommentController::class, 'edit']);
     Route::post('/update/{id}', [CommentController::class, 'update']);
     Route::get('/delete/{id}', [CommentController::class, 'delete']);
@@ -48,9 +49,9 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/', [MainController::class, 'index']);
 Route::get('galery/{img}', [MainController::class, 'show']);
 
-Route::get('contacts', function(){
+Route::get('contacts', function () {
     $contact = [
-        'name'=>'Polytech',
+        'name' => 'Polytech',
         'adress' => 'B.Semenovskaya 38',
         'phone' => '8(495)232-3232'
     ];

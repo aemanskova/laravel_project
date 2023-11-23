@@ -2,7 +2,12 @@
 
 namespace App\Providers;
 
+
+use Illuminate\Pagination\Paginator;
+
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +24,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Paginator::useBootstrap();
+        Blade::directive('activeLinks', function ($route) {
+            return "<?php echo request()->is($route) ? 'active' : null; ?>";
+        });
     }
 }

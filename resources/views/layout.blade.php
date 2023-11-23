@@ -428,18 +428,18 @@
       <ul class="navbar-nav mr-auto">
         @can('create')
         <li class="nav-item">
-          <a class="nav-link" href="/article/create">Create Article<span class="sr-only">(current)</span></a>
+          <a class="nav-link @activeLinks('article/create')" href="/article/create">Create Article<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/comment">Comments <span class="sr-only">(current)</span></a>
+          <a class="nav-link  @activeLinks('comment')" href="/comment">Comments <span class="sr-only">(current)</span></a>
         </li>
         @endcan
         <li class="nav-item">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link  @activeLinks('/')" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/contacts">Contact</a>
+          <a class="nav-link  @activeLinks('contacts')" href="/contacts">Contact</a>
         </li>
         @auth
         <li class="nav-item dropdown">
